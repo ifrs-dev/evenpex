@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% comment %}
+{% block titlepage %}Eventos{% endblock titlepage %}
+{% endcomment %}
+
+{% block content %}
+<h3>Eventos</h3>
+{% for event in object_list %}
+    <h4>{{ event.title }}</h4>
+    <p>{{ event.description }}</p>
+    <b>{{ event.start_date }}</b><br>
+    <i>{{ event.get_kind_display|date:"d-M-Y" }}</i>
+{% endfor %}
+{% endblock content %}
