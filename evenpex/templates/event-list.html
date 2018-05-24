@@ -5,11 +5,74 @@
 {% endcomment %}
 
 {% block content %}
-<h3>Eventos</h3>
-{% for event in object_list %}
-    <h4>{{ event.title }}</h4>
-    <p>{{ event.description }}</p>
-    <b>{{ event.start_date }}</b><br>
-    <i>{{ event.get_kind_display|date:"d-M-Y" }}</i>
-{% endfor %}
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">evenPEX</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Todos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Ensino</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pesquisa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Extensão</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Meus Eventos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+    <br><br><br>
+      <div class="row">
+        {% for event in object_list %}
+        <div class="col-lg-4 col-sm-6">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">{{ event.title }}</a>
+              </h4>
+              <p class="card-text">
+                  {{ event.description }}
+                  {{ event.date|date:"d-m-Y" }}
+                  {{ event.get_kind_display }}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <br>
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright © Your Website 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+</body>
+
 {% endblock content %}
