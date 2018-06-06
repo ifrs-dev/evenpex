@@ -15,20 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 
-from events.views import EventListView
-
+from events import views
 
 urlpatterns = [
-    path('', EventListView.as_view()),
+    path('', views.EventListView.as_view(), name="home"),
+    path('evento/<int:pk>/', views.EventDetailView.as_view(), name='event-detail'),
+    path('eventos-pesquisa/', views.EventSearchListView.as_view(), name="event-search"),
+    path('eventos-extensao/', views.EventExtensionListView.as_view(), name="event-extension"),
+    path('eventos-ensino/', views.EventTeachingListView.as_view(), name="event-teaching"),
     path('admin/', admin.site.urls),
-]
-
-
-
-
-
-
-
-
-
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
