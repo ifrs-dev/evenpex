@@ -1,11 +1,19 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import View, ListView, DetailView
+from django.shortcuts import redirect
 
-from events.models import Event
+from events.models import Event, Registration
 
 
 class EventDetailView(DetailView):
     model = Event
     template_name = 'event-detail.html'
+
+
+class EventRegistrationView(DetailView):
+    model = Event
+
+    def get(self, request, *args, **kwargs):
+        return redirect('home')
 
 
 class EventListView(ListView):

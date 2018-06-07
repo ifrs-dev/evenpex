@@ -1,7 +1,6 @@
 *~
 *.pye
 *.pyc
-*.sqlite3
 
 venv
 */migrations/*

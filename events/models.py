@@ -28,7 +28,7 @@ class Event(models.Model):
 class Registration(models.Model):
     event = models.ForeignKey(Event, on_delete=models.PROTECT)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
-    status = models.IntegerField(choices=CHOICES_STATUS)
+    status = models.IntegerField(choices=CHOICES_STATUS, default=1)
 
     def __str__(self):
         return self.event.title + ' - ' + self.user.first_name

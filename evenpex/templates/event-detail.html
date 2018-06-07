@@ -2,6 +2,16 @@
 
 {% block content %}
 
-  <h3>{{ object.title }}</h3>
+  <div align="center">
+    <img src="{{ object.banner.url }}">
+  </div>
+  <h4>{{ object.title }}</h4>
+  <b>Início: {{ object.start_date|date:"d-m-Y" }}</b>
+  <br><b>Tipo: {{ object.get_kind_display }}</b>
+  <br><br><p>{{ object.description}}</p>
+
+  <div align="center">
+    <a href="#" class="btn btn-success">Realizar Inscrição</a>
+  </div>
 
 {% endblock content %}
