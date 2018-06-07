@@ -26,6 +26,7 @@ urlpatterns = [
     path('eventos-pesquisa/', views.EventSearchListView.as_view(), name="event-search"),
     path('eventos-extensao/', views.EventExtensionListView.as_view(), name="event-extension"),
     path('eventos-ensino/', views.EventTeachingListView.as_view(), name="event-teaching"),
+    path('meus-eventos/', views.MyRegistrationsListView.as_view(), name="my-events"),
     path('inscricao/<int:pk>/', views.EventRegistrationView.as_view(), name="event-registration"),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

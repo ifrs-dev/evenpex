@@ -11,7 +11,7 @@
   <br><br><p>{{ object.description}}</p>
 
   <div align="center">
-    <a href="#" class="btn btn-success">Realizar Inscrição</a>
+    <a href="{% url 'event-registration' object.pk %}" class="btn btn-success">Realizar Inscrição</a>
   </div>
 
 {% endblock content %}
