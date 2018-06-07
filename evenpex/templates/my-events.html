@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4>Meus Eventos</h4>
+  <table class="table">
+    <thead>
+      <tr><th>Evento</th><th>Tipo</th><th>Data</th></tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+          <tr>
+            <td>{{ object.event.title }}</td>
+            <td>{{ object.event.get_kind_display }}</td>
+            <td>{{ object.event.start_date|date:"d-m-Y" }}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
