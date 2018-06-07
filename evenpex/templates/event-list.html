@@ -7,15 +7,14 @@
 {% block content %}
   <div class="row">
     {% for event in object_list %}
-    <div class="col-lg-4 col-sm-6">
+    <div class="col-lg-4 col-sm-6" style="padding-bottom: 20px">
       <div class="card h-100">
-        <a href="#"><img class="card-img-top" src="{{ event.banner.url }}" alt=""></a>
+        <a href="#"><img class="card-img-top" src="{{ event.banner.url }}" alt="{{ event.title }}" height="150px"></a>
         <div class="card-body">
           <h4 class="card-title">
             <a href="{% url 'event-detail' event.pk %}">{{ event.title }}</a>
           </h4>
           <p class="card-text">
-              {{ event.description }}
               {{ event.date|date:"d-m-Y" }}
               {{ event.get_kind_display }}
           </p>
