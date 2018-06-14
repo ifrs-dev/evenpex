@@ -4,15 +4,23 @@
   <h4>Meus Eventos</h4>
   <table class="table">
     <thead>
-      <tr><th>Evento</th><th>Tipo</th><th>Data</th></tr>
+      <tr>
+        <th>Evento</th>
+        <th>Tipo</th>
+        <th>Data</th>
+        <th>Status</th>
+      </tr>
     </thead>
     <tbody>
       {% for object in object_list %}
-          <tr>
-            <td>{{ object.event.title }}</td>
-            <td>{{ object.event.get_kind_display }}</td>
-            <td>{{ object.event.start_date|date:"d-m-Y" }}</td>
-          </tr>
+        <tr>
+          <td>
+            <a href="{% url 'event-detail' object.event.pk %}">{{ object.event.title }}</a>
+          </td>
+          <td>{{ object.event.get_kind_display }}</td>
+          <td>{{ object.event.start_date|date:"d-m-Y" }}</td>
+          <td>{{ object.get_status_display }}</td>
+        </tr>
       {% endfor %}
     </tbody>
   </table>

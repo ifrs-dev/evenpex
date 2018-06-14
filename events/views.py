@@ -1,5 +1,6 @@
-from django.views.generic import View, ListView, DetailView
+from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import redirect
+from django.views.generic import View, ListView, DetailView
 
 from events.models import Event, Registration
 
@@ -19,11 +20,15 @@ class EventDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
-        events = Registration.objects.filter(event=self.get_object(), user=self.request.user)
-        if events.exists():
-            context['registred'] = True
-        else:
-            context['registred'] = False
+        user = self.request.user
+        try:
+            events = Registration.objects.filter(event=self.get_object(), user=user)
+            if events.exists():
+                context['registred'] = True
+            else:
+                context['registred'] = False
+        except:
+            context['not_user'] = True
         return context
 
 class EventRegistrationView(DetailView):
