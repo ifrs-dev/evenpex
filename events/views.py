@@ -5,6 +5,16 @@ from django.views.generic import View, ListView, DetailView
 from events.models import Event, Registration
 
 
+class RegistrationUpdateView(DetailView):
+    model = Registration
+
+    def get(self, request, *args, **kwargs):
+        registration = self.get_object()
+        registration.status = 2
+        registration.save()
+        return redirect('registrations-list', registration.event.id)
+
+
 class RegistrationsListView(DetailView):
     model = Event
     template_name = "registrations-list.html"

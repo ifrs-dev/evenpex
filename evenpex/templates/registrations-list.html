@@ -9,6 +9,7 @@
         <th>CPF</th>
         <th>E-mail</th>
         <th>Status</th>
+        <th>Presença</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,11 @@
           <td>{{ object.user.username }}</td>
           <td>{{ object.user.email }}</td>
           <td>{{ object.get_status_display }}</td>
+          <td>
+            <a href="{% url 'registration-update' object.pk %}">
+              Presente
+            </a>
+          </td>
         </tr>
       {% endfor %}
     </tbody>
