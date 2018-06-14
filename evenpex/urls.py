@@ -14,6 +14,7 @@ urlpatterns = [
     path('eventos-extensao/', views.EventExtensionListView.as_view(), name="event-extension"),
     path('eventos-ensino/', views.EventTeachingListView.as_view(), name="event-teaching"),
     path('meus-eventos/', login_required(views.MyRegistrationsListView.as_view()), name="my-events"),
+    path('participantes/<int:pk>/', login_required(views.RegistrationsListView.as_view()), name="registration-list"),
     path('inscricao/<int:pk>/', login_required(views.EventRegistrationView.as_view()), name="event-registration"),
     path('login/', auth_views.LoginView.as_view(), name="login"),
     path('logout/', auth_views.logout, {'next_page': '/login/'}, name="logout"),

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4>{{ object.title }}</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>E-mail</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in registrations %}
+        <tr>
+          <td>{{ object.user.get_full_name }}</td>
+          <td>{{ object.user.username }}</td>
+          <td>{{ object.user.email }}</td>
+          <td>{{ object.get_status_display }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}

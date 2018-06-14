@@ -5,6 +5,17 @@ from django.views.generic import View, ListView, DetailView
 from events.models import Event, Registration
 
 
+class RegistrationsListView(DetailView):
+    model = Event
+    template_name = "registrations-list.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data()
+        event = self.get_object()
+        context['registrations'] = Registration.objects.filter(event=event)
+        return context
+
+
 class MyRegistrationsListView(ListView):
     model = Registration
     template_name = 'my-events.html'
