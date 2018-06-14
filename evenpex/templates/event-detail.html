@@ -18,6 +18,12 @@
   {% else %}
     <a href="{% url 'event-registration' object.pk %}" class="btn btn-success">Realizar Inscrição</a>
   {% endif %}
+
+  {% if request.user.is_superuser %}
+    <a class="btn btn-info" href="{% url 'registrations-list' object.pk %}"> Gerenciar Evento
+    </a>
+  {% endif %}
+
   </div>
 
 {% endblock content %}
