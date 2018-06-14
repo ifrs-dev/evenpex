@@ -9,20 +9,29 @@ class MyRegistrationsListView(ListView):
     template_name = 'my-events.html'
 
     def get_queryset(self):
-        return Registration.objects.filter(user=self.request.user)
+        objects = Registration.objects.filter(user=self.request.user)
+        return objects.order_by('event__start_date')
 
 
 class EventDetailView(DetailView):
     model = Event
     template_name = 'event-detail.html'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data()
+        events = Registration.objects.filter(event=self.get_object(), user=self.request.user)
+        if events.exists():
+            context['registred'] = True
+        else:
+            context['registred'] = False
+        return context
 
 class EventRegistrationView(DetailView):
     model = Event
 
     def get(self, request, *args, **kwargs):
         Registration.objects.create(event=self.get_object(), user=request.user)
-        return redirect('home')
+        return redirect('my-events')
 
 
 class EventListView(ListView):

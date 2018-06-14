@@ -26,6 +26,10 @@ class Event(models.Model):
 
 
 class Registration(models.Model):
+
+    class Meta:
+        unique_together = (('event', 'user'),)
+
     event = models.ForeignKey(Event, on_delete=models.PROTECT)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     status = models.IntegerField(choices=CHOICES_STATUS, default=1)
