@@ -11,8 +11,10 @@
   <br><br><p>{{ object.description}}</p>
 
   {% if registred %}
-    Inscrito
-  {% elif %}
+    <div align="center">
+      <button class="btn" disabled>Inscrito</button>
+    </div>
+  {% else %}
     <div align="center">
       <a href="{% url 'event-registration' object.pk %}" class="btn btn-success">Realizar Inscrição</a>
     </div>
