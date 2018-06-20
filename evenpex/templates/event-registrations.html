@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4>Registros</h4>
+  <table class="table">
+    <thead>
+      <tr><th>Nome</th><th>Email</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+          <tr>
+            <td>{{ r.user.firstname }}</td>
+            <td>{{ r.user.email }}</td>
+            <td>{{ r.user.get_status_display }}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}

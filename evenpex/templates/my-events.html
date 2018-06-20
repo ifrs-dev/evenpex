@@ -18,7 +18,7 @@
             <a href="{% url 'event-detail' object.event.pk %}">{{ object.event.title }}</a>
           </td>
           <td>{{ object.event.get_kind_display }}</td>
-          <td>{{ object.event.start_date|date:"d-m-Y" }}</td>
+          <td>{{ object.event.start_date|date:"d/m/Y" }}</td>
           <td>{{ object.get_status_display }}</td>
         </tr>
       {% endfor %}

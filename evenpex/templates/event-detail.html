@@ -3,20 +3,24 @@
 {% block content %}
 
   <div align="center">
-    <img src="{{ object.banner.url }}">
+    <img src="{{ object.banner.url }}" style="height: 300px; max-width: 1000px;">
   </div>
+  <br>
   <h4>{{ object.title }}</h4>
-  <b>Início: {{ object.start_date|date:"d-m-Y" }}</b>
+  
+  <b>Início: {{ object.start_date|date:"d/m/Y" }}</b>
+  
   <br><b>Tipo: {{ object.get_kind_display }}</b>
+  
   <br><br><p>{{ object.description}}</p>
 
   <div align="center">
   {% if not_user %}
-    <button class="btn" disabled>Necessário Login Para Inscrição</button>
+    <button class="btn btn-danger" disabled>Necessário Login Para Inscrição</button>
   {% elif registred %}
-    <button class="btn" disabled>Inscrito</button>
+    <button class="btn btn-success" disabled>Inscrito</button>
   {% else %}
-    <a href="{% url 'event-registration' object.pk %}" class="btn btn-success">Realizar Inscrição</a>
+    <a href="{% url 'event-registration' object.pk %}" class="btn btn-success btn-info">Realizar Inscrição</a>
   {% endif %}
 
   {% if request.user.is_superuser %}

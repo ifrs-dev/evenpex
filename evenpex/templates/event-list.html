@@ -14,13 +14,17 @@
           <h4 class="card-title">
             <a href="{% url 'event-detail' event.pk %}">{{ event.title }}</a>
           </h4>
-          <p class="card-text">
-            {{ event.start_date|date:"d-m-Y" }}
-          </p>
+          <b class="card-text">
+            {{ event.start_date|date:"d/m/Y" }}
+          </b>
         </div>
       </div>
     </div>
     {% endfor %}
   </div>
 
+<style type="text/css">
+  
+
+</style>
 {% endblock content %}
