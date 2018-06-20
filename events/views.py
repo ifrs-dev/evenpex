@@ -7,12 +7,20 @@ from events.models import Event, Registration
 
 class RegistrationUpdateView(DetailView):
     model = Registration
+    status = 1
 
     def get(self, request, *args, **kwargs):
         registration = self.get_object()
-        registration.status = 2
+        registration.status = self.status
         registration.save()
         return redirect('registrations-list', registration.event.id)
+
+
+class RegistrationPresentView(RegistrationUpdateView):
+    status = 2
+
+class RegistrationAbsentView(RegistrationUpdateView):
+    status = 3
 
 
 class RegistrationsListView(DetailView):
@@ -22,7 +30,7 @@ class RegistrationsListView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
         event = self.get_object()
-        context['registrations'] = Registration.objects.filter(event=event)
+        context['registrations'] = Registration.objects.filter(event=event).order_by('user__first_name')
         return context
 
 
@@ -63,6 +71,7 @@ class EventRegistrationView(DetailView):
 class EventListView(ListView):
     model = Event
     template_name = 'event-list.html'
+    ordering = ['start_date']
 
 
 class EventSearchListView(EventListView):
