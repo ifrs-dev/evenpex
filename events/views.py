@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import redirect
 from django.views.generic import View, ListView, DetailView
+from easy_pdf.views import PDFTemplateView
 
 from events.models import Event, Registration
 
@@ -22,6 +23,9 @@ class RegistrationPresentView(RegistrationUpdateView):
 class RegistrationAbsentView(RegistrationUpdateView):
     status = 3
 
+
+class PDFView(PDFTemplateView):
+    template_name = 'pdf.html'
 
 class RegistrationsListView(DetailView):
     model = Event
