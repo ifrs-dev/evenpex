@@ -1,5 +1,5 @@
 from easy_pdf.views import PDFTemplateResponseMixin
-from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth.models import AnonymousUser, User
 from django.shortcuts import redirect
 from django.views.generic import View, ListView, DetailView
 from django.conf import settings
@@ -48,6 +48,14 @@ class RegistrationsListView(DetailView):
         context['registrations'] = Registration.objects.filter(event=event).order_by('user__first_name')
         context['pdf'] = self.pdf
         return context
+
+    def post(self, request, *args, **kwargs):
+        user = User.objects.get(username=request.POST['cpf'])
+        registration = Registration.objects.get(user=user, event=self.get_object())
+        registration.status = 2
+        registration.save()
+        return super().get(request, *args, **kwargs)
+        
 
 
 class RegistrationsPDFView(RegistrationsListView, PDFTemplateResponseMixin):
