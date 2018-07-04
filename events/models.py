@@ -15,12 +15,13 @@ CHOICES_STATUS = (
 
 
 class Event(models.Model):
+    workload = models.TimeField(default=0)
     title = models.CharField(max_length=45)
     description = models.TextField()
     start_date = models.DateField()
     kind = models.IntegerField(choices=CHOICES_EVENT, default=1)
     banner = models.ImageField(upload_to='events_banners', help_text='Resolução recomendada: 1000x300 px')
-
+    
     def __str__(self):
         return self.title
 

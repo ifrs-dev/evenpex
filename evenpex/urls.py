@@ -19,6 +19,7 @@ urlpatterns = [
     path('evento/<int:pk>/inscricao/', login_required(views.EventRegistrationView.as_view()), name="event-registration"),
     path('evento/presenca/<int:pk>/', login_required(views.RegistrationPresentView.as_view()), name="registration-present"),
     path('evento/ausencia/<int:pk>/', login_required(views.RegistrationAbsentView.as_view()), name="registration-absent"),
+    path('evento/certificado/<int:pk>/', login_required(views.RegistrationDetailView.as_view()), name="registration-detail"),
     path('login/', auth_views.LoginView.as_view(), name="login"),
     path('logout/', auth_views.logout, {'next_page': '/login/'}, name="logout"),
     path('admin/', admin.site.urls),

@@ -6,6 +6,17 @@ from django.conf import settings
 
 from events.models import Event, Registration
 
+class RegistrationDetailView(DetailView, PDFTemplateResponseMixin):
+    model = Event
+    template_name = "registrations-detail-pdf.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        event = self.get_object()
+        context['registrations'] = Registration.objects.filter(event=event).order_by('user__first_name')
+        return context
+
+
 
 class RegistrationUpdateView(DetailView):
     model = Registration
