@@ -2,7 +2,16 @@
 
 {% block content %}
 
-<a class="btn btn-success" href="{% url 'registrations-list-pdf' object.pk %}">Imprimir</a>
+<div class="container">
+	<div class="row">
+		<div class="col-lg">
+			<h3>{{ object.title }}</h3>
+		</div>
+		<div class="col-sm-right">
+			<a class="btn btn-success" href="{% url 'registrations-list-pdf' object.pk %}">Imprimir</a>
+		</div>
+	</div>
+</div>
 
 {% include "registrations-table.html" %}
 

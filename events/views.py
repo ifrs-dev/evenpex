@@ -29,16 +29,19 @@ class RegistrationAbsentView(RegistrationUpdateView):
 class RegistrationsListView(DetailView):
     model = Event
     template_name = "registrations-list.html"
+    pdf = False
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         event = self.get_object()
         context['registrations'] = Registration.objects.filter(event=event).order_by('user__first_name')
+        context['pdf'] = self.pdf
         return context
 
 
 class RegistrationsPDFView(RegistrationsListView, PDFTemplateResponseMixin):
     template_name = 'registrations-list-pdf.html'
+    pdf = True
 
 
 class MyRegistrationsListView(ListView):
