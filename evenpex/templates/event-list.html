@@ -5,6 +5,13 @@
 {% endcomment %}
 
 {% block content %}
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="{% url 'event-open' %}" role="tab" aria-controls="nav-home" aria-selected="true">Inscrições Abertas</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Inscrições Encerradas</a>
+  </div>
+</nav>
+
   <div class="row">
     {% for event in object_list %}
     <div class="col-lg-4 col-sm-6" style="padding-bottom: 20px">

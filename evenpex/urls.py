@@ -12,6 +12,7 @@ urlpatterns = [
     path('eventos/pesquisa/', views.EventSearchListView.as_view(), name="event-search"),
     path('eventos/extensao/', views.EventExtensionListView.as_view(), name="event-extension"),
     path('eventos/ensino/', views.EventTeachingListView.as_view(), name="event-teaching"),
+    path('eventos/abertos/', views.PageEventsListView.as_view(), name="event-open"),
     path('eventos/meus/', login_required(views.MyRegistrationsListView.as_view()), name="my-events"),
     path('evento/<int:pk>/', views.EventDetailView.as_view(), name='event-detail'),
     path('evento/<int:pk>/participantes/', login_required(views.RegistrationsListView.as_view()), name="registrations-list"),

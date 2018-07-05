@@ -3,6 +3,7 @@ from django.contrib.auth.models import AnonymousUser, User
 from django.shortcuts import redirect
 from django.views.generic import View, ListView, DetailView
 from django.conf import settings
+from datetime import datetime
 
 from events.models import Event, Registration
 
@@ -113,3 +114,7 @@ class EventTeachingListView(EventListView):
 
 class EventExtensionListView(EventListView):
     queryset = Event.objects.filter(kind=3)
+
+
+class PageEventsListView(EventListView):
+    queryset = Event.objects.filter(start_date__gte=datetime.now())
