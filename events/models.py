@@ -16,6 +16,9 @@ CHOICES_STATUS = (
 
 class Event(models.Model):
     workload = models.TimeField(default=0)
+    local = models.CharField(max_length=45)
+    end_date = models.DateField()
+    organization = models.CharField(max_length=200)
     title = models.CharField(max_length=45)
     description = models.TextField()
     start_date = models.DateField()

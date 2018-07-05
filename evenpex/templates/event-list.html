@@ -22,7 +22,9 @@
             <a href="{% url 'event-detail' event.pk %}">{{ event.title }}</a>
           </h4>
           <b class="card-text">
-            {{ event.start_date|date:"d/m/Y" }}
+            {{ event.start_date|date:"d" }}
+            de {{ event.start_date|date:"F" }}
+            de {{ event.start_date|date:"Y" }}
           </b>
         </div>
       </div>

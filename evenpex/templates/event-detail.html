@@ -1,19 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style type="text/css">
+img{
+border-radius: 50px;
+}
 
+
+
+</style>
+<center>
   <div align="center">
     <img src="{{ object.banner.url }}" style="height: 300px; max-width: 1000px;">
   </div>
   <br>
-  <h4>{{ object.title }}</h4>
   
-  <b>Início: {{ object.start_date|date:"d/m/Y" }}</b>
-  
-  <br><b>Tipo: {{ object.get_kind_display }}</b>
-  
-  <br><br><p>{{ object.description}}</p>
 
+<div>
+  <h4>{{ object.title }}</h4>
+</div>
+  <br>
+<div class="container">
+  <div class="row">
+    <div class="col">   
+      <b>Início: </b> {{ object.start_date|date:"d/m/Y" }}
+      <br><b>Tipo: </b> {{ object.get_kind_display }}
+    </div>
+
+    <div class="col">
+      <b>Data Final: </b>{{ object.end_date }}<br>
+      <b>Organizado por: </b>{{ object.organization }}<br> 
+      <b>Local: </b>{{ object.local }}
+    </div>
+  </div>
+</div>
+  <br>
+<div align="center">
+  {{ object.description }}
+</div>
+<br>
   <div align="center">
   {% if not_user %}
     <button class="btn btn-danger" disabled>Necessário Login Para Inscrição</button>
@@ -29,5 +54,5 @@
   {% endif %}
 
   </div>
-
+</center>
 {% endblock content %}
