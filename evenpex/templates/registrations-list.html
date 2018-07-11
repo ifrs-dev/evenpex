@@ -10,8 +10,8 @@
 		<div class="col-5">
 			<form method="post">
 				{% csrf_token %}
-			<input type="text" name="cpf" placeholder="CPF" autofocus="true">
-			<input type="submit" value="Marcar presença">
+			<input type="text" name="cpf" placeholder="CPF" autofocus="true" required="true">
+			<input type="submit"  class="btn btn-info" value="Marcar presença">
 			</form>
 			
 		</div>
